@@ -1,6 +1,6 @@
 ## Mülltrenner
 
-Mülltrenner is a rubbish-sorting game designed to educate and test our knowledge of recycling guidelines in Berlin.
+A rubbish-sorting game to educate and test our knowledge of recycling guidelines in Berlin.
 
 The main source of all data comes from the Berliner Stadtreinigungsbetriebe at https://www.bsr.de/die-berliner-stadtreinigung-in-englischer-sprache-26142.php.
 
