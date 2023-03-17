@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Bin, bins, Item } from './helpers/types';
+// @ts-ignore
 import data from './helpers/rawdata.csv';
 
 const pickRandomItem = (data: Item[]) =>
