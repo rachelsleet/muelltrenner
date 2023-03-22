@@ -10,7 +10,7 @@ function Leaderboard(props: {
     <div className="App">
       <h1>Scores</h1>
       {props.scores
-        .sort((a, b) => a.score - b.score)
+        .sort((a, b) => b.score - a.score)
         .map((score) => (
           <p key={score.name}>
             {score.name} : {score.score}/10
