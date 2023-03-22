@@ -14,3 +14,5 @@ export type Item = {
   bin_eng: Bin;
   bin_de: string;
 };
+
+export type Score = { name: string; score: number };

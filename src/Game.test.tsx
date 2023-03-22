@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import App from './App';
+import Game from './Game';
 
-describe('App loads', () => {
+const handleSubmitDouble = (score: number) => {};
+
+describe('Game can be played', () => {
   it('renders', async () => {
-    render(<App />);
+    render(<Game name="" handleSubmit={handleSubmitDouble} />);
 
     expect(screen.getByText('Pick the right bin:'));
     const buttons = await screen.findAllByRole('button');
@@ -13,7 +15,7 @@ describe('App loads', () => {
   });
 
   it('displays Learn More link', async () => {
-    render(<App />);
+    render(<Game name="" handleSubmit={handleSubmitDouble} />);
 
     const link = screen.getByText('Learn more');
     expect(link).toHaveAttribute(
@@ -23,12 +25,12 @@ describe('App loads', () => {
   });
 
   it('increments the score', async () => {
-    render(<App />);
+    render(<Game name="Storm" handleSubmit={handleSubmitDouble} />);
 
-    expect(screen.getByText('Score: 0/0'));
+    expect(screen.getByText("Storm's Score: 0/0"));
     const button = await screen.findByText('household');
     await userEvent.click(button);
 
-    expect(screen.getByText(/Score\: ?0\/1/));
+    expect(screen.getByText(/Storm\'s Score\: ?0\/1/));
   });
 });
