@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Landing from './Landing';
 import Game from './Game';
 import Leaderboard from './Leaderboard';
 import { Score } from './helpers/types';
+import { fetchScores, postScore } from './helpers/api';
+import { GAME_LENGTH } from './helpers/constants';
 
 function App() {
   const [name, setName] = useState('');
@@ -17,8 +19,12 @@ function App() {
     navigate('/play');
   };
 
-  const handleGameSubmit = (score: number) => {
-    scores.push({ name, score });
+  const handleGameSubmit = async (score: number) => {
+    setScores((scores) => [
+      ...scores,
+      { name, correct: score, total: GAME_LENGTH }
+    ]);
+    await postScore({ name, correct: score + '', total: GAME_LENGTH + '' });
     navigate('/leaderboard');
   };
 
@@ -26,6 +32,14 @@ function App() {
     setName('');
     navigate('/');
   };
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      const scores = await fetchScores();
+      setScores(scores);
+    };
+    dataFetch();
+  }, []);
 
   return (
     <div className="App">

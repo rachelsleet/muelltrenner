@@ -10,10 +10,10 @@ function Leaderboard(props: {
     <div className="App">
       <h1>Scores</h1>
       {props.scores
-        .sort((a, b) => b.score - a.score)
+        .sort((a, b) => b.correct - a.correct)
         .map((score) => (
           <p key={score.name}>
-            {score.name} : {score.score}/10
+            {score.name} : {score.correct}/{score.total}
           </p>
         ))}
       <button onClick={props.handleSubmit}>Play again</button>

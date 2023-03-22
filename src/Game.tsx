@@ -3,6 +3,7 @@ import './App.css';
 import { Bin, bins, Item } from './helpers/types';
 // @ts-ignore
 import data from './helpers/rawdata.csv';
+import { GAME_LENGTH } from './helpers/constants';
 
 const pickRandomItem = (data: Item[]) =>
   data[Math.round(Math.random() * (data.length - 1))];
@@ -37,8 +38,7 @@ function Game(props: { name: string; handleSubmit: Function }) {
   };
 
   useEffect(() => {
-    console.log(total);
-    if (total === 10) {
+    if (total === GAME_LENGTH) {
       props.handleSubmit(score);
     }
   }, [total]);
@@ -47,7 +47,7 @@ function Game(props: { name: string; handleSubmit: Function }) {
     <div className="Game">
       <div>
         <h1>
-          {props.name}'s Score: {score}/{total}
+          {props.name}'s Score: {score}/{GAME_LENGTH}
         </h1>
       </div>
       <h1>Pick the right bin:</h1>

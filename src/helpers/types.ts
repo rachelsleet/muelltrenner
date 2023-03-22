@@ -15,4 +15,4 @@ export type Item = {
   bin_de: string;
 };
 
-export type Score = { name: string; score: number };
+export type Score = { name: string; correct: number; total: number };
