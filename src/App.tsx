@@ -19,7 +19,8 @@ function App() {
   };
 
   const handleGameSubmit = async (score: number) => {
-    if (name !== '') {
+    const lowestScore = scores.sort((a, b) => a.correct - b.correct)[0].correct;
+    if (name !== '' && score > lowestScore) {
       setScores((scores) => [
         ...scores,
         { name, correct: score, total: GAME_LENGTH }

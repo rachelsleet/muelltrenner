@@ -7,7 +7,7 @@ const handleSubmitDouble = (score: number) => {};
 
 describe('Game can be played', () => {
   it('renders', async () => {
-    render(<Game name="" handleSubmit={handleSubmitDouble} />);
+    render(<Game handleSubmit={handleSubmitDouble} />);
 
     expect(screen.getByText('Pick the right bin:'));
     const buttons = await screen.findAllByRole('button');
@@ -15,7 +15,7 @@ describe('Game can be played', () => {
   });
 
   it('displays Learn More link', async () => {
-    render(<Game name="" handleSubmit={handleSubmitDouble} />);
+    render(<Game handleSubmit={handleSubmitDouble} />);
 
     const link = screen.getByText('Learn more');
     expect(link).toHaveAttribute(
@@ -25,12 +25,12 @@ describe('Game can be played', () => {
   });
 
   it('increments the score', async () => {
-    render(<Game name="Storm" handleSubmit={handleSubmitDouble} />);
+    render(<Game handleSubmit={handleSubmitDouble} />);
 
-    expect(screen.getByText("Storm's Score: 0/0"));
+    expect(screen.getByText('Score: 0/0'));
     const button = await screen.findByText('household');
     await userEvent.click(button);
 
-    expect(screen.getByText(/Storm\'s Score\: ?0\/1/));
+    expect(screen.getByText(/Score\: ?0\/1/));
   });
 });
