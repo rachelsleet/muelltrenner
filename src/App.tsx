@@ -10,8 +10,7 @@ import { GAME_LENGTH } from './helpers/constants';
 
 function App() {
   const [name, setName] = useState('');
-  const initialScores: Score[] = [];
-  const [scores, setScores] = useState(initialScores);
+  const [scores, setScores] = useState<Score[]>([]);
   const navigate = useNavigate();
 
   const handleNameSubmit = (name: string) => {
@@ -20,11 +19,13 @@ function App() {
   };
 
   const handleGameSubmit = async (score: number) => {
-    setScores((scores) => [
-      ...scores,
-      { name, correct: score, total: GAME_LENGTH }
-    ]);
-    await postScore({ name, correct: score + '', total: GAME_LENGTH + '' });
+    if (name !== '') {
+      setScores((scores) => [
+        ...scores,
+        { name, correct: score, total: GAME_LENGTH }
+      ]);
+      await postScore({ name, correct: score + '', total: GAME_LENGTH + '' });
+    }
     navigate('/leaderboard');
   };
 
@@ -33,22 +34,25 @@ function App() {
     navigate('/');
   };
 
+  const loadScores = async () => {
+    const scores = await fetchScores();
+    setScores(scores);
+  };
+
   useEffect(() => {
-    const dataFetch = async () => {
-      const scores = await fetchScores();
-      setScores(scores);
-    };
-    dataFetch();
+    loadScores();
   }, []);
 
   return (
-    <div className="App">
+    <div>
       <Routes>
-        <Route index element={<Landing handleSubmit={handleNameSubmit} />} />
         <Route
-          path="play"
-          element={<Game name={name} handleSubmit={handleGameSubmit} />}
+          index
+          element={
+            <Landing suggestedName={name} handleSubmit={handleNameSubmit} />
+          }
         />
+        <Route path="play" element={<Game handleSubmit={handleGameSubmit} />} />
         <Route
           path="leaderboard"
           element={

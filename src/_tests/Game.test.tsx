@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Game from './Game';
+import Game from '../Game';
 
 const handleSubmitDouble = (score: number) => {};
 

@@ -1,8 +1,9 @@
 import { useState, ChangeEvent } from 'react';
+import bin from './assets/bin.png';
 import './App.css';
 
-function Landing(props: { handleSubmit: Function }) {
-  const [name, setName] = useState('');
+function Landing(props: { suggestedName: string; handleSubmit: Function }) {
+  const [name, setName] = useState(props.suggestedName);
   const handleClick = (event: any) => {
     props.handleSubmit(name);
   };
@@ -11,10 +12,19 @@ function Landing(props: { handleSubmit: Function }) {
     setName(input.target.value);
   };
   return (
-    <div className="App">
-      <h1>Enter Name:</h1>
+    <div>
+      <img src={bin} />
+      <h2>Welcome to Mülltrenner</h2>
+      <p>
+        A rubbish-sorting game to educate and test your knowledge of recycling
+        guidelines in Berlin.
+      </p>
+      <p>Enter Name:</p>
       <input type="text" onChange={handleChange}></input>
-      <button onClick={handleClick}>Play</button>
+      <div>
+        <button onClick={handleClick}>Play</button>
+        <button onClick={handleClick}>Skip</button>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,24 @@
+.glass {
+  background-color: #526e42;
+  color: white;
+}
+
+.paper {
+  background-color: #267ac2;
+  color: white;
+}
+
+.recycling {
+  background-color: #f4974a;
+  color: white;
+}
+
+.food {
+  background-color: #96654e;
+  color: white;
+}
+
+.household {
+  background-color: black;
+  color: white;
+}
